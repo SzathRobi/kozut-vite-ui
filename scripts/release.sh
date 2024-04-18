@@ -4,7 +4,7 @@
 set -e
 
 # Read the command argument (release, release:patch, release:major)
-command="$1"
+command="${npm_lifecycle_event#release:}"
 
 # Read the current package.json version
 current_version=$(node -p "require('./package.json').version")
@@ -24,10 +24,10 @@ case "$command" in
   release)
     new_version=$(npm version --no-git-tag-version minor)
     ;;
-  release:patch)
+  patch)
     new_version=$(npm version --no-git-tag-version patch)
     ;;
-  release:major)
+  major)
     new_version=$(npm version --no-git-tag-version major)
     ;;
   *)
