@@ -1,5 +1,5 @@
 import { type VariantProps } from 'class-variance-authority';
-import React, { type ComponentPropsWithRef } from 'react';
+import { ReactNode, type ComponentPropsWithRef } from 'react';
 
 import { clsxMerge } from '../../lib/utils/classNameUtils';
 import { buttonStyles } from './helpers';
@@ -9,8 +9,8 @@ type ButtonElementProps = ComponentPropsWithRef<'button'>;
 export interface ButtonProps
   extends ButtonElementProps,
     VariantProps<typeof buttonStyles> {
-  leftIcon?: React.ReactNode;
-  rightIcon?: React.ReactNode;
+  leftIcon?: ReactNode;
+  rightIcon?: ReactNode;
   label?: string;
 }
 

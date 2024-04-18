@@ -1,8 +1,5 @@
 import { cva } from 'class-variance-authority';
 
-/**
- * Button styles for the Button component.
- */
 export const buttonStyles = cva(
   'flex flex-row gap-x-4 disabled:cursor-not-allowed items-center justify-center',
   {

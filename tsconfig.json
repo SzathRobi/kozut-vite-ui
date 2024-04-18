@@ -22,6 +22,6 @@
     "declaration": true,
     "allowSyntheticDefaultImports": true
   },
-  "include": ["index.ts", "src"],
+  "include": ["index.ts", "src", "jest.setup.ts"],
   "references": [{ "path": "./tsconfig.node.json" }]
 }
