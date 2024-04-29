@@ -1,42 +1,28 @@
+import * as React from 'react';
+import { Slot } from '@radix-ui/react-slot';
 import { type VariantProps } from 'class-variance-authority';
-import { ReactNode, type ComponentPropsWithRef } from 'react';
 
 import { clsxMerge } from '../../lib/utils/classNameUtils';
-import { buttonStyles } from './helpers';
-
-type ButtonElementProps = ComponentPropsWithRef<'button'>;
+import { buttonVariants } from './buttonVariants';
 
 export interface ButtonProps
-  extends ButtonElementProps,
-    VariantProps<typeof buttonStyles> {
-  leftIcon?: ReactNode;
-  rightIcon?: ReactNode;
-  label?: string;
+  extends React.ButtonHTMLAttributes<HTMLButtonElement>,
+    VariantProps<typeof buttonVariants> {
+  asChild?: boolean;
 }
 
-export default function Button({
-  className,
-  buttonType,
-  size,
-  rounded,
-  label,
-  rightIcon,
-  spacing,
-  leftIcon,
-  ...props
-}: ButtonProps) {
-  return (
-    <button
-      className={clsxMerge(
-        buttonStyles({ buttonType, size, rounded, spacing }),
-        className
-      )}
-      type="button"
-      {...props}
-    >
-      {Boolean(leftIcon) && leftIcon}
-      {Boolean(label) && label}
-      {Boolean(rightIcon) && rightIcon}
-    </button>
-  );
-}
+const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
+  ({ className, variant, size, asChild = false, ...props }, ref) => {
+    const Comp = asChild ? Slot : 'button';
+    return (
+      <Comp
+        className={clsxMerge(buttonVariants({ variant, size, className }))}
+        ref={ref}
+        {...props}
+      />
+    );
+  }
+);
+Button.displayName = 'Button';
+
+export { Button };

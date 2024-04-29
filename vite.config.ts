@@ -4,6 +4,8 @@ import { libInjectCss } from 'vite-plugin-lib-inject-css';
 import dts from 'vite-plugin-dts';
 import path from 'path';
 import tailwindcss from 'tailwindcss';
+import autoprefixer from 'autoprefixer';
+import purgecss from '@fullhuman/postcss-purgecss';
 
 export default defineConfig({
   server: {
@@ -26,7 +28,13 @@ export default defineConfig({
   ],
   css: {
     postcss: {
-      plugins: [tailwindcss],
+      plugins: [
+        tailwindcss,
+        autoprefixer,
+        purgecss({
+          content: ['./src/**/*.{js,jsx,ts,tsx}'],
+        }),
+      ],
     },
   },
   build: {

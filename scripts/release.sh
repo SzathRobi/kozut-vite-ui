@@ -13,11 +13,7 @@ echo "Current version: $current_version"
 # Build the project
 npm run build
 
-# Commit the changes
-git add .
-git commit -m "chore: (ui-kit) new version $new_version"
-# TODO: comment this out when ready
-# git push origin main
+npm run lint
 
 # Increment the version number based on the command argument
 case "$command" in
@@ -35,7 +31,12 @@ case "$command" in
     exit 1
     ;;
 esac
-echo "New version: $new_version"
+
+# Commit version upgrade
+git add .
+git commit -m "chore: (ui-kit) new version $new_version"
+# TODO: comment this out when ready
+# git push origin main
 
 # Publish the project
 npm publish --access public || { echo "Error: Failed to publish package."; exit 1; }

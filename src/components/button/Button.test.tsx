@@ -1,8 +1,8 @@
 import { render, screen } from '@testing-library/react';
 
-import Button from './Button';
+import { Button } from './Button';
 
-jest.mock('./helpers');
+jest.mock('./buttonVariants');
 
 describe('Button', () => {
   it('should render the title', () => {
