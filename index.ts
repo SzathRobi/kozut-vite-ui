@@ -1,2 +1,2 @@
 import './src/index.css';
-export { Button } from './src/components/button/Button';
+export { Button, type ButtonProps } from './src/components/button/Button';
